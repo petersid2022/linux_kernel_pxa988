@@ -1,0 +1,22 @@
+## Description
+
+This is a modified version of Samsung T110 Android 3.4.5 Kernel, which also implements modification needed to run an old version of Etnaviv module and is compatible with PostMarketOS.
+
+Old Etnaviv: https://github.com/austriancoder/linux/tree/old/drivers/staging/etnaviv
+
+*Original README -> README.linux*
+
+## Configs
+goyawifi_pmos_minimal_defconfig -> Create a [minimal version](https://github.com/T110-pmOS/linux_kernel_diff_pxa988/tree/minimal)  of linux kernel for Goyawifi (you should lightly modify some files to compile, check bellow)
+goyawifi_pmos_etnaviv_defconfig -> Recommended, it will build vivante, etnaviv, galcore, etc. .
+goyawifi_pmos_defconfig -> Initial
+
+### Minimal
+Comment board-goya.c -> 4766 - 4768
+Comment i2c-pxa.c -> 1728 - 1731
+Comment drivers/marvell/Makefile all
+Modify arch/arm/Kconfig 2402 -> KERNEL_DEBUG_SEC -> default n
+Comment drivers/Makefile 139
+Comment if/else (let only second part) drivers/input/misc/88pm822_onkey.c:200:7
+
+
